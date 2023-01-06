@@ -72,6 +72,7 @@
       <DependentUpon>DudunBotModel.tt</DependentUpon>
     </Compile>
     <Compile Include="IFinanceDao.cs" />
+    <Compile Include="IUserDao.cs" />
     <Compile Include="Portfolio.cs">
       <DependentUpon>DudunBotModel.tt</DependentUpon>
     </Compile>

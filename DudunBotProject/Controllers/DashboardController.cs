@@ -8,22 +8,26 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace DudunBotProject.Controllers
-{ 
+{
 
     public class DashboardController : Controller
     {
 
         private readonly IFinanceService _financeService;
+        private readonly IUserService _userService;
 
         public DashboardController()
         {
             _financeService = new FinanceService();
+            _userService = new UserService();
         }
-
 
         // GET: Dashboard
         public ActionResult Index()
         {
+            if (Session["User"] == null)
+                return RedirectToAction("Login");
+
             ViewBag.Title = "Dashboard";
             ViewBag.CountFinance = _financeService.GetCount();
             ViewData["Finance"] = _financeService.GetAll();
@@ -37,5 +41,31 @@ namespace DudunBotProject.Controllers
 
             return View();
         }
+
+        [AllowAnonymous]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost, AllowAnonymous]
+        public ActionResult Login(FormCollection param)
+        {
+            string username = param["Username"];
+            string password = param["Password"];
+
+            if (_userService.Auth(username, password) == false)
+                return View();
+
+            Session["User"] = username;
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Logout()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Login");
+        }
+
     }
 }

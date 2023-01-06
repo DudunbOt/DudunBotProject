@@ -1771,6 +1771,8 @@
     <Content Include="Views\Finance\Edit.cshtml" />
     <Content Include="Views\Finance\Index.cshtml" />
     <Content Include="Views\Shared\Date.cshtml" />
+    <Content Include="Views\_Blank.cshtml" />
+    <Content Include="Views\Dashboard\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

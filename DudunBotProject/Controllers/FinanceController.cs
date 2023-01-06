@@ -38,6 +38,9 @@ namespace DudunBotProject.Controllers
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
 
+            if (Session["User"] == null)
+                return RedirectToAction("Login", "Dashboard");
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParam = sortOrder == "Source" ? "source_desc" : "Source";
             ViewBag.DateSortParam = sortOrder == "Date" ? "date_desc" : "Date";
@@ -59,6 +62,9 @@ namespace DudunBotProject.Controllers
 
         public ActionResult Create()
         {
+            if (Session["User"] == null)
+                return RedirectToAction("Login", "Dashboard");
+
             var data = new Finance();
             return View(data);
         }
@@ -79,6 +85,9 @@ namespace DudunBotProject.Controllers
 
         public ActionResult Details(int id)
         {
+            if (Session["User"] == null)
+                return RedirectToAction("Login", "Dashboard");
+
             var data = _financeService.GetById(id);
             if (data == null)
                 return RedirectToAction("Index");
@@ -88,6 +97,9 @@ namespace DudunBotProject.Controllers
 
         public ActionResult Edit(int id)
         {
+            if (Session["User"] == null)
+                return RedirectToAction("Login", "Dashboard");
+
             var data = _financeService.GetById(id);
             if (data == null)
                 return RedirectToAction("Index");
@@ -117,6 +129,9 @@ namespace DudunBotProject.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (Session["User"] == null)
+                return RedirectToAction("Login", "Dashboard");
+
             var data = _financeService.GetById(id);
             if (data == null)
                 return RedirectToAction("Index");
