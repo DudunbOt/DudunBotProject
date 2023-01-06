@@ -1,0 +1,247 @@
+﻿@using mdlDudunBot
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    var outcome = ViewData["OutcomePerMonth"] as IEnumerable<string>;
+    string[] lineChart = outcome.ToArray();
+}
+
+<h2>Dashboard</h2>
+<hr />
+<h4 class="mt-lg-2">Number of Records</h4>
+<div class="row">
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-bottom-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Finance
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.CountFinance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-bottom-primary shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            Blog
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-bottom-danger shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                            Portfolio
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<h3>Finances</h3>
+<hr />
+
+<div class="row">
+    <div class="col-xl-3 col-md- mb-4">
+        <div class="card border-left-success h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Current Balance
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.CurrentBalance.ToString("C")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Savings
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.Saving.ToString("C")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Money Lent
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.Rent_Out.ToString("C")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            Debt
+                        </div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.Rent_In.ToString("C")</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-xl-6 col-lg-7">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-success">Your spending this month</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            var labels = '@lineChart[0]';
+            var data = '@lineChart[1]';
+            console.log(labels);
+            var labelArray = new Array();
+            var dataArray = new Array();
+            for (var i = 0; i < labels.split('|').length; i++) {
+                labelArray.push(labels.split('|')[i]);
+                dataArray.push(data.split('|')[i]);
+            }
+
+            var ctx = document.getElementById("myAreaChart").getContext('2d');
+            var myAreaChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labelArray,
+                    datasets: [{
+                        label: 'Outcome',
+                        backgroundColor: '#3EB9DC',
+                        data: dataArray,
+                        borderColor: '#047857',
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Day'
+                            }
+                        }
+                    }
+                }
+            });
+        })
+    </script>
+
+    <div class="col-xl-6 col-lg7">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-success">Yearly Outcome</h6>
+            </div>
+            <div class="card-body">
+                <div class="chart-bar">
+                    <canvas id="myBarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            var data = '@ViewBag.Yearly';
+            var dataArray = new Array();
+            for (var i = 0; i < data.split('|').length; i++) {
+                dataArray.push(data.split('|')[i]);
+            }
+
+            var ctx = document.getElementById("myBarChart").getContext('2d');
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Outcome',
+                        backgroundColor: '#047857',
+                        data: dataArray,
+                        borderColor: '#047857',
+                        fill: '#047857',
+                    }]
+                },
+                options: {
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Month'
+                            }
+                        }
+                    }
+                }
+            });
+        })
+    </script>
+
+    @*<div class="col-xl-2 col-lg7">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-success">Task This Month</h6>
+            </div>
+            <div class="card-body">
+                
+            </div>
+        </div>
+    </div>*@
+
+</div>
+
+
+

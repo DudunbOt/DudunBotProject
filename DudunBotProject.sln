@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33130.400
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DudunBotProject", "DudunBotProject\DudunBotProject.csproj", "{007124A7-3D5E-4897-802F-55D207DCB2F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mdlDudunBot", "mdlDudunBot\mdlDudunBot.csproj", "{BFB98697-9E58-486F-BB88-38F7F5B4BCDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "daoInSQLDudunBot", "daoInSQLDudunBot\daoInSQLDudunBot.csproj", "{8B6ACEA4-30F1-4CB7-BF6A-5B2F9CA71A84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "svcDudunBot", "svcDudunBot\svcDudunBot.csproj", "{4A004CA4-5537-4F71-B461-EA69B60FF70B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bosvcDudunBot", "bosvcDudunBot\bosvcDudunBot.csproj", "{3C252730-5C0A-4BA7-B08E-7CD2E4486377}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5E66FABD-7F48-4EAD-9A56-F5F966ACC6D2}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{007124A7-3D5E-4897-802F-55D207DCB2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007124A7-3D5E-4897-802F-55D207DCB2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007124A7-3D5E-4897-802F-55D207DCB2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007124A7-3D5E-4897-802F-55D207DCB2F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB98697-9E58-486F-BB88-38F7F5B4BCDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB98697-9E58-486F-BB88-38F7F5B4BCDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB98697-9E58-486F-BB88-38F7F5B4BCDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB98697-9E58-486F-BB88-38F7F5B4BCDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B6ACEA4-30F1-4CB7-BF6A-5B2F9CA71A84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B6ACEA4-30F1-4CB7-BF6A-5B2F9CA71A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B6ACEA4-30F1-4CB7-BF6A-5B2F9CA71A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B6ACEA4-30F1-4CB7-BF6A-5B2F9CA71A84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A004CA4-5537-4F71-B461-EA69B60FF70B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A004CA4-5537-4F71-B461-EA69B60FF70B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A004CA4-5537-4F71-B461-EA69B60FF70B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A004CA4-5537-4F71-B461-EA69B60FF70B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C252730-5C0A-4BA7-B08E-7CD2E4486377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C252730-5C0A-4BA7-B08E-7CD2E4486377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C252730-5C0A-4BA7-B08E-7CD2E4486377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C252730-5C0A-4BA7-B08E-7CD2E4486377}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E178837-BE47-41F6-B8F2-D71AE8206272}
+	EndGlobalSection
+EndGlobal

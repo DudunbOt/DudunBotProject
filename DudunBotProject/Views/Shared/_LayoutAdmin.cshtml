@@ -1,0 +1,94 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link href="~/Content/sb-admin-2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/line-awesome-1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="icon" href="~/Assets/img/logo.png" type="image/x-icon" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md px-3 navbar-dark bg-theme-dark">
+        <a class="navbar-brand" href="#">
+            <span class="text-light small">Dudun Bot</span>
+        </a>
+        <button class="navbar-toggler d-md-none collapsed " type="button" data-bs-toggle="collapse"
+                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+
+    <main id="main" class="" role="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 pt-4 py-lg-3 py-3 d-md-block sidebar collapse bg-light menu-side" id="sidebarMenu">
+                    <a href="@Url.Action("Index", "Dashboard")" class="text-secondary py-1 px-2 d-block d-md-inline-block mb-4">
+                        <i class="las la-chart-bar me-1"></i> Dashboard
+                    </a>
+                    <a href="@Url.Action("Index", "Finance")"
+                       class="text-secondary py-1 px-2 d-block d-md-inline-block d-lg-block">
+                        <i class="las la-wallet me-1"></i> Finance
+                    </a>
+
+                    <a href="login.html" class="text-secondary py-1 px-2 d-block d-md-inline-block d-lg-block">
+                        <i class="las la-user-circle me-1"></i> Logout
+                    </a>
+                </div>
+                <div class=" col-lg-10 px-3 py-1 bg-white ">
+
+                    <div class="card bg-white border-0 mh-100">
+                        <div class="card-body">
+                            @{
+                                if (ViewBag.Controller != null)
+                                {
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">@ViewBag.Controller</a></li>
+                                            @{
+                                                if (ViewBag.Action != null)
+                                                {
+                                                    <li class="breadcrumb-item"><a href="#">@ViewBag.Action</a></li>
+                                                }
+                                                if (ViewBag.Id != null)
+                                                {
+                                                    <li class="breadcrumb-item active" aria-current="page">@ViewBag.Id</li>
+                                                }
+                                            }
+                                        </ol>
+                                    </nav>
+                                }
+                            }
+
+                            <!-- content -->
+                            @RenderBody()
+                            <!-- end content -->
+                        </div>
+                    </div>
+                    <div class="row text-muted">
+                        <div class="col-md-12 text-right text-md-end small">
+                            <a href="" class="text-secondary mx-1">
+                                &copy;
+                                Pineda Prima Yoga
+                            </a> |
+                            <a href="" class="text-secondary mx-1">Tentang Aplikasi</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+
+</html>

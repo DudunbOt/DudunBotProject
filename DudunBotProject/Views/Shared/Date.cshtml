@@ -1,0 +1,12 @@
+﻿@model Nullable<DateTime>
+
+@{ DateTime dt = new DateTime();
+    if (Model != null)
+    {
+        dt = (System.DateTime)Model;
+    }
+    else
+    {
+        dt = DateTime.Now;
+    }
+    @Html.TextBox("", String.Format("{0:d}", dt.ToShortDateString()), new { @class = "datefield", type = "date" }) }

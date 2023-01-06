@@ -1,0 +1,52 @@
+﻿@model mdlDudunBot.Finance
+
+@{
+    ViewBag.Title = "Finance - Details";
+    ViewBag.Controller = "Finance";
+    ViewBag.Action = "Details";
+    ViewBag.Id = Model.Id;
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Source)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Source)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nominal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nominal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class="btn btn-warning"})
+    @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-success"})
+</p>
