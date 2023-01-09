@@ -14,11 +14,6 @@ namespace mdlDudunBot
         bool Update(Finance data, int id);
         bool Delete(int id);
         int GetCount();
-        List<Finance> FilterSearch(string searchString, string sortOrder);
-        decimal GetSum(string type);
-        decimal GetCurrentBalance();
-        List<string> GetOutcomePerMonth();
-        string GetYearlyOutcome();
 
     }
 }
