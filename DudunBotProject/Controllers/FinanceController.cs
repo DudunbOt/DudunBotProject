@@ -157,21 +157,5 @@ namespace DudunBotProject.Controllers
 
             return RedirectToAction("Index");
         }
-
-        public ActionResult SelectType()
-        {
-            List<SelectListItem> items = new List<SelectListItem>
-            {
-                new SelectListItem { Text = "Income", Value = "0" },
-                new SelectListItem { Text = "Outcome", Value = "1" },
-                new SelectListItem { Text = "Rent-In", Value = "2" },
-                new SelectListItem { Text = "Rent-Out", Value = "3" },
-                new SelectListItem { Text = "Saving", Value = "4" }
-            };
-
-            ViewBag.Type = items;
-
-            return View();
-        }
     }
 }
