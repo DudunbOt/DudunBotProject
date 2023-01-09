@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InSQLFInanceDao.cs" />
+    <Compile Include="InSQLPortfolioDao.cs" />
     <Compile Include="InSQLUserDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
