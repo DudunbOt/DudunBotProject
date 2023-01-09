@@ -17,7 +17,7 @@ namespace mdlDudunBot
         public int Id { get; set; }
         public string Title { get; set; }
         public string Client { get; set; }
-        public byte Type { get; set; }
+        public string Type { get; set; }
         public string Image { get; set; }
     }
 

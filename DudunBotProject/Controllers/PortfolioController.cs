@@ -18,7 +18,7 @@ namespace DudunBotProject.Controllers
         {
             data.Title = param["Title"];
             data.Image = param["Image"];
-            data.Type = byte.Parse(param["Type"]);
+            data.Type = param["Type"];
 
             return data;
         }
