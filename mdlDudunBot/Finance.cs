@@ -33,7 +33,7 @@ namespace mdlDudunBot
 
 
 
-    public enum Category
+    public enum CategoryFinance
     {
         Income,
         Outcome,
