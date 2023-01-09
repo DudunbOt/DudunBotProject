@@ -37,7 +37,7 @@ namespace DudunBotProject.Controllers
         // GET: Finance
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-
+            
             if (Session["User"] == null)
                 return RedirectToAction("Login", "Dashboard");
 
