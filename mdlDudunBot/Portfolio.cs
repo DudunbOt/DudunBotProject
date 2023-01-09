@@ -20,4 +20,10 @@ namespace mdlDudunBot
         public byte Type { get; set; }
         public string Image { get; set; }
     }
+
+    public enum CategoryPortfolio
+    {
+        Public,
+        Private
+    }
 }
