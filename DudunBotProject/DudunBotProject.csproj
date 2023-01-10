@@ -1783,6 +1783,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\Upload\Portfolio\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -1795,6 +1796,7 @@
     <Content Include="Views\Portfolio\Delete.cshtml" />
     <Content Include="Views\Portfolio\Details.cshtml" />
     <Content Include="Views\Portfolio\Create.cshtml" />
+    <Content Include="Views\Portfolio\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bosvcDudunBot\bosvcDudunBot.csproj">
