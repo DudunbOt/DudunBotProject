@@ -114,9 +114,19 @@ namespace DudunBotProject.Controllers
         [HttpPost]
         public ActionResult Edit(FormCollection param, int id)
         {
+            HttpPostedFileBase file = Request.Files["ImageFile"];
             var data = _portfolioService.GetById(id);
+
             if (data == null)
                 return RedirectToAction("Index");
+
+            if (file != null && file.ContentLength > 0)
+            {
+                string path = Path.Combine(Server.MapPath("~/Assets/Upload/Portfolio/"), Path.GetFileName(file.FileName));
+                file.SaveAs(path);
+                string ImgPath = Path.GetFileName(file.FileName);
+                data.Image = ImgPath;
+            }
 
             BindData(data, param);
             if (_portfolioService.Update(data, id) == false)
