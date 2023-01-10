@@ -101,7 +101,7 @@ namespace bosvcDudunBot
                 dy = key.Day,
                 yr = key.Year,
                 mnth = key.Month,
-                OutcomePerMonth = group.Sum(k => k.Nominal).Value
+                OutcomePerMonth = group.Sum(k => k.Nominal)
             })
             .ToList();
 
@@ -130,15 +130,15 @@ namespace bosvcDudunBot
             switch (type)
             {
                 case "Income":
-                    return (from x in finances where x.Type == "Income" select x.Nominal).Sum().Value;
+                    return (from x in finances where x.Type == "Income" select x.Nominal).Sum();
                 case "Outcome":
-                    return (from x in finances where x.Type == "Outcome" select x.Nominal).Sum().Value;
+                    return (from x in finances where x.Type == "Outcome" select x.Nominal).Sum();
                 case "Saving":
-                    return (from x in finances where x.Type == "Saving" select x.Nominal).Sum().Value;
+                    return (from x in finances where x.Type == "Saving" select x.Nominal).Sum();
                 case "Rent_In":
-                    return (from x in finances where x.Type == "Rent_In" select x.Nominal).Sum().Value;
+                    return (from x in finances where x.Type == "Rent_In" select x.Nominal).Sum();
                 case "Rent_Out":
-                    return (from x in finances where x.Type == "Rent_Out" select x.Nominal).Sum().Value;
+                    return (from x in finances where x.Type == "Rent_Out" select x.Nominal).Sum();
             }
             return 0;
         }
@@ -159,7 +159,7 @@ namespace bosvcDudunBot
 
             foreach (var item in outcome)
             {
-                nominal.Add(item.monthlyOutcome.Value);
+                nominal.Add(item.monthlyOutcome);
             }
 
             string monthlyOutcomedata = string.Join("|", nominal);
