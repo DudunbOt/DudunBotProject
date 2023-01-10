@@ -4,6 +4,8 @@ using PagedList;
 using svcDudunBot;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,9 +19,8 @@ namespace DudunBotProject.Controllers
         public Portfolio BindData(Portfolio data, FormCollection param)
         {
             data.Title = param["Title"];
-            data.Image = param["Image"];
+            data.Client = param["Client"];
             data.Type = param["Type"];
-
             return data;
         }
 
@@ -72,7 +73,16 @@ namespace DudunBotProject.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection param)
         {
+            HttpPostedFileBase file = Request.Files["ImageFile"];
+            if (file == null || file.ContentLength < 1)
+                return View();
+
+            string path = Path.Combine(Server.MapPath("~/Assets/Upload/Portfolio/"), Path.GetFileName(file.FileName));
+            file.SaveAs(path);
+            string ImgPath = Path.GetFileName(file.FileName);
+
             var data = new Portfolio();
+            data.Image = ImgPath;
             BindData(data, param);
 
             if (_portfolioService.Create(data) == null)
