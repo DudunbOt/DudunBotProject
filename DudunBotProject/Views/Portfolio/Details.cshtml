@@ -1,14 +1,14 @@
 ﻿@model mdlDudunBot.Portfolio
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Portfolio - Details";
+    ViewBag.Controller = "Portfolio";
+    ViewBag.Action = "Details";
+    ViewBag.Id = Model.Id;
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Portfolio</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -40,12 +40,12 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Image)
+            <img src="~/Assets/Upload/Portfolio/@Model.Image" alt="Alternate Text"  height="150"/>
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
 </p>
