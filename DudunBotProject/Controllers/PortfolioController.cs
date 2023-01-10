@@ -24,6 +24,17 @@ namespace DudunBotProject.Controllers
             return data;
         }
 
+        public string GetImage(HttpPostedFileBase file)
+        {
+            if (file == null || file.ContentLength < 1)
+                return null;
+
+            string path = Path.Combine(Server.MapPath("~/Assets/Upload/Portfolio/"), Path.GetFileName(file.FileName));
+            file.SaveAs(path);
+            
+            return Path.GetFileName(file.FileName);
+        }
+
         public Portfolio DataPreview(int id)
         {
             if (Session["User"] == null)
@@ -74,12 +85,9 @@ namespace DudunBotProject.Controllers
         public ActionResult Create(FormCollection param)
         {
             HttpPostedFileBase file = Request.Files["ImageFile"];
-            if (file == null || file.ContentLength < 1)
+            var ImgPath = GetImage(file);
+            if (ImgPath == null)
                 return View();
-
-            string path = Path.Combine(Server.MapPath("~/Assets/Upload/Portfolio/"), Path.GetFileName(file.FileName));
-            file.SaveAs(path);
-            string ImgPath = Path.GetFileName(file.FileName);
 
             var data = new Portfolio();
             data.Image = ImgPath;
@@ -120,13 +128,9 @@ namespace DudunBotProject.Controllers
             if (data == null)
                 return RedirectToAction("Index");
 
-            if (file != null && file.ContentLength > 0)
-            {
-                string path = Path.Combine(Server.MapPath("~/Assets/Upload/Portfolio/"), Path.GetFileName(file.FileName));
-                file.SaveAs(path);
-                string ImgPath = Path.GetFileName(file.FileName);
+            var ImgPath = GetImage(file);
+            if (ImgPath != null)
                 data.Image = ImgPath;
-            }
 
             BindData(data, param);
             if (_portfolioService.Update(data, id) == false)
