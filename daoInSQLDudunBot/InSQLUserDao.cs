@@ -10,7 +10,7 @@ namespace daoInSQLDudunBot
 {
     public class InSQLUserDao : IUserDao
     {
-        DudunBotEntities Db = new DudunBotEntities();
+        readonly DudunBotEntities Db = new DudunBotEntities();
         public bool Auth(string username, string password)
         {
             if (!Db.Users.Any(u => u.Username == username) && !Db.Users.Any(u => u.Password == password))
