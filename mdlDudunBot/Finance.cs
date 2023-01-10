@@ -11,27 +11,20 @@ namespace mdlDudunBot
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Finance
     {
         public int Id { get; set; }
-
-        [DisplayName("Description")]
         public string Source { get; set; }
 
         [DataType(DataType.Currency)]
-        public Nullable<int> Nominal { get; set; }
+        public int Nominal { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
-
-        [DisplayName("Category")]
         public string Type { get; set; }
     }
-
-
 
     public enum CategoryFinance
     {

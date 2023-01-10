@@ -11,10 +11,7 @@ namespace mdlDudunBot
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web;
-
+    
     public partial class Portfolio
     {
         public int Id { get; set; }
@@ -22,7 +19,6 @@ namespace mdlDudunBot
         public string Client { get; set; }
         public string Type { get; set; }
         public string Image { get; set; }
-        public HttpPostedFileBase ImageFile { get; set; }
     }
 
     public enum CategoryPortfolio
