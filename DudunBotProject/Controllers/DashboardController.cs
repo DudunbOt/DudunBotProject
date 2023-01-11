@@ -63,7 +63,7 @@ namespace DudunBotProject.Controllers
 
         public ActionResult Logout()
         {
-            Session["User"] = null;
+            Session.Clear();
             return RedirectToAction("Login");
         }
 

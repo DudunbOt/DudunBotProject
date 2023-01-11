@@ -13,7 +13,7 @@ namespace daoInSQLDudunBot
         readonly DudunBotEntities Db = new DudunBotEntities();
         public bool Auth(string username, string password)
         {
-            if (!Db.Users.Any(u => u.Username == username) && !Db.Users.Any(u => u.Password == password))
+            if (!Db.Users.Any(u => u.Username == username && u.Password == password))
                 return false;
 
             return true;

@@ -7,6 +7,8 @@
     var outcome = ViewData["OutcomePerMonth"] as IEnumerable<string>;
     string[] lineChart = outcome.ToArray();
 }
+
+<p>@Session["User"]</p>
 <h2>Dashboard</h2>
 <hr />
 <h4 class="mt-lg-2">Number of Records</h4>
