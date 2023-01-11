@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InSQLBlogDao.cs" />
     <Compile Include="InSQLFInanceDao.cs" />
     <Compile Include="InSQLPortfolioDao.cs" />
     <Compile Include="InSQLUserDao.cs" />
