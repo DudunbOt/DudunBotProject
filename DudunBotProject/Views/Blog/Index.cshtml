@@ -1,0 +1,90 @@
+﻿@model PagedList.IPagedList<mdlDudunBot.Blog>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Blog";
+    ViewBag.Controller = "Blog";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    int number = 1;
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-primary" })
+</p>
+
+@using (Html.BeginForm("Index", "Portfolio", FormMethod.Get))
+{
+    <div class="col-md-4 mb-3">
+        <div class="row g-3">
+            <div class="col-auto">
+                @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @placeholder = "Search ..." })
+            </div>
+            <div class="col-auto">
+                <input type="submit" value="Search" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr class="text-success">
+        <th>
+            No
+        </th>
+        <th>
+            @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.NameSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "text-success" })
+        </th>
+        <th>
+            Subtitle
+        </th>
+        <th>
+            Content
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            Created At
+        </th>
+        <th>
+            @Html.ActionLink("Updated At", "Index", new { sortOrder = ViewBag.DateSortParam, currentFilter = ViewBag.CurrentFilter }, new { @class = "text-success" })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subtitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-warning" })
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-outline-info" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
