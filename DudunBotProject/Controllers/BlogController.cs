@@ -88,7 +88,7 @@ namespace DudunBotProject.Controllers
             return View(data);
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Create(FormCollection param)
         {
             HttpPostedFileBase file = Request.Files["Image"];
@@ -116,7 +116,7 @@ namespace DudunBotProject.Controllers
             return View(DataPreview(id));
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult Edit(FormCollection param, int id)
         {
             HttpPostedFileBase file = Request.Files["Image"];
