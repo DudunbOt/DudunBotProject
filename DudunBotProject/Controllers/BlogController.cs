@@ -42,7 +42,7 @@ namespace DudunBotProject.Controllers
             return Path.GetFileName(file.FileName);
         }
 
-        public Blog dataPreview(int id)
+        public Blog DataPreview(int id)
         {
             if (Session["User"] == null)
                 return null;
@@ -80,7 +80,12 @@ namespace DudunBotProject.Controllers
             if (Session["User"] == null)
                 return RedirectToAction("Login", "Dashboard");
 
-            return View();
+            var data = new Blog()
+            {
+                Author = Session["User"].ToString()
+            };
+
+            return View(data);
         }
 
         [HttpPost]
@@ -105,21 +110,22 @@ namespace DudunBotProject.Controllers
 
         public ActionResult Edit(int id)
         {
-            if (dataPreview(id) == null)
+            if (DataPreview(id) == null)
                 return RedirectToAction("Index");
 
-            return View(dataPreview(id));
+            return View(DataPreview(id));
         }
 
         [HttpPost]
         public ActionResult Edit(FormCollection param, int id)
         {
             HttpPostedFileBase file = Request.Files["Image"];
-            var data = dataPreview(id);
+            var data = DataPreview(id);
             var ImgPath = GetImage(file);
             if (ImgPath != null)
                 data.Image = ImgPath;
 
+            data.UpdatedAt = DateTime.Now.ToShortDateString();
             BindData(data, param);
             if(_blogService.Update(data, id) == false)
             {
@@ -135,24 +141,24 @@ namespace DudunBotProject.Controllers
 
         public ActionResult Details(int id)
         {
-            if (dataPreview(id) == null)
+            if (DataPreview(id) == null)
                 return RedirectToAction("Index");
 
-            return View(dataPreview(id));
+            return View(DataPreview(id));
         }
 
         public ActionResult Delete(int id)
         {
-            if (dataPreview(id) == null)
+            if (DataPreview(id) == null)
                 return RedirectToAction("Index");
 
-            return View(dataPreview(id));
+            return View(DataPreview(id));
         }
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            var data = dataPreview(id);
+            var data = DataPreview(id);
             if(_blogService.Delete(id) == false)
             {
                 var err = _blogService.GetErrors();
