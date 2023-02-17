@@ -15,7 +15,7 @@ namespace mdlDudunBot
 
     public partial class Finance
     {
-        public int Id { get; set; }
+        public Nullable<int> Id { get; set; }
         public string Source { get; set; }
 
         [DataType(DataType.Currency)]

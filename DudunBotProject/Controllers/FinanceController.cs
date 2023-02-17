@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Data;
+using System.Net;
 
 namespace DudunBotProject.Controllers
 {
@@ -88,11 +89,15 @@ namespace DudunBotProject.Controllers
             if (Session["User"] == null)
                 return RedirectToAction("Login", "Dashboard");
 
-            var data = _financeService.GetById(id);
-            if (data == null)
-                return RedirectToAction("Index");
+            if (id != null)
+            {
+                var data = _financeService.GetById(id);
+                if (data == null)
+                    return RedirectToAction("Index");
 
-            return View(data);
+                return View(data);
+            }
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         public ActionResult Edit(int id)
@@ -115,7 +120,7 @@ namespace DudunBotProject.Controllers
                 return RedirectToAction("Index");
 
             BindData(data, param);
-            if(_financeService.Update(data, data.Id) == false)
+            if(_financeService.Update(data, data.Id.Value) == false)
             {
                 var err = _financeService.GetErrors();
                 foreach (var item in err)
