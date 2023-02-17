@@ -99,27 +99,47 @@ namespace bosvcDudunBot
             .GroupBy(x => new { x.Day, x.Year, x.Month }, (key, group) => new
             {
                 dy = key.Day,
-                yr = key.Year,
-                mnth = key.Month,
                 OutcomePerMonth = group.Sum(k => k.Nominal)
             })
             .ToList();
 
-            var day = new List<int>();
-            var uang = new List<int>();
-            var data = new List<string>();
+            var dict = new Dictionary<string, string>();
+            var dataInDict = new Dictionary<string, string>();
 
             foreach (var item in outcome)
             {
-                day.Add(item.dy);
-                uang.Add(item.OutcomePerMonth);
+                dict.Add(item.dy.ToString(), item.OutcomePerMonth.ToString());
             }
 
-            var labels = string.Join("|", day);
-            var values = string.Join("|", uang);
-            data.Add(labels);
-            data.Add(values);
+            var days = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
 
+            for (int i = 1; i < days; i++)
+            {
+                if(dict.Any(x => x.Key == i.ToString()))
+                {
+                    dataInDict.Add(i.ToString(), dict[i.ToString()]);
+                }
+                else
+                {
+                    dataInDict.Add(i.ToString(), "0");
+                }
+            }
+
+            var labels = new List<string>();
+            var values = new List<string>();
+            foreach (var item in dataInDict)
+            {
+                labels.Add(item.Key);
+                values.Add(item.Value);
+            }
+
+            string label = string.Join("|", labels);
+            string value = string.Join("|", values);
+            var data = new List<string>
+            {
+                label,
+                value
+            };
 
             return data;
         }

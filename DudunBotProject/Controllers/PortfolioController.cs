@@ -89,8 +89,10 @@ namespace DudunBotProject.Controllers
             if (ImgPath == null)
                 return View();
 
-            var data = new Portfolio();
-            data.Image = ImgPath;
+            var data = new Portfolio()
+            {
+                Image = ImgPath
+            };
             BindData(data, param);
 
             if (_portfolioService.Create(data) == null)
