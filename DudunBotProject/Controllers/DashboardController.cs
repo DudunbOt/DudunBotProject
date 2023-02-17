@@ -1,10 +1,5 @@
 ﻿using bosvcDudunBot;
-using mdlDudunBot;
 using svcDudunBot;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace DudunBotProject.Controllers
@@ -14,11 +9,16 @@ namespace DudunBotProject.Controllers
     {
 
         private readonly IFinanceService _financeService;
+        private readonly IPortfolioService _portfolioService;
+        private readonly IBlogService _blogService;
         private readonly IUserService _userService;
 
         public DashboardController()
         {
             _financeService = new FinanceService();
+            _portfolioService = new PortfolioService();
+            _blogService = new BlogService();
+            
             _userService = new UserService();
         }
 
@@ -29,7 +29,11 @@ namespace DudunBotProject.Controllers
                 return RedirectToAction("Login");
 
             ViewBag.Title = "Dashboard";
+
             ViewBag.CountFinance = _financeService.GetCount();
+            ViewBag.CountPortfolio = _portfolioService.GetCount();
+            ViewBag.CountBlog = _blogService.GetCount();
+
             ViewData["Finance"] = _financeService.GetAll();
             ViewData["OutcomePerMonth"] = _financeService.GetOutcomePerMonth();
             ViewBag.Yearly = _financeService.GetYearlyOutcome();
