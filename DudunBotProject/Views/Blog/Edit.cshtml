@@ -9,7 +9,7 @@
 }
 
 <script src="~/Assets/ckeditor/ckeditor.js"></script>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Blog", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     

@@ -7,8 +7,6 @@
     var outcome = ViewData["OutcomePerMonth"] as IEnumerable<string>;
     string[] lineChart = outcome.ToArray();
 }
-
-<p>@Session["User"]</p>
 <h2>Dashboard</h2>
 <hr />
 <h4 class="mt-lg-2">Number of Records</h4>
@@ -35,7 +33,7 @@
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Blog
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.CountBlog</div>
                     </div>
                 </div>
             </div>
@@ -49,7 +47,7 @@
                         <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                             Portfolio
                         </div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.CountPortfolio</div>
                     </div>
                 </div>
             </div>
@@ -192,43 +190,43 @@
     </div>
 
     <script>
-        $(function () {
-            var data = '@ViewBag.Yearly';
-            var dataArray = new Array();
-            for (var i = 0; i < data.split('|').length; i++) {
-                dataArray.push(data.split('|')[i]);
-            }
+            $(function () {
+                var data = '@ViewBag.Yearly';
+                var dataArray = new Array();
+                for (var i = 0; i < data.split('|').length; i++) {
+                    dataArray.push(data.split('|')[i]);
+                }
 
-            var ctx = document.getElementById("myBarChart").getContext('2d');
-            var myBarChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                    datasets: [{
-                        label: 'Outcome',
-                        backgroundColor: '#047857',
-                        data: dataArray,
-                        borderColor: '#047857',
-                        fill: '#047857',
-                    }]
-                },
-                options: {
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
+                var ctx = document.getElementById("myBarChart").getContext('2d');
+                var myBarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jan', 'Feb', 'Mar', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                        datasets: [{
+                            label: 'Outcome',
+                            backgroundColor: '#047857',
+                            data: dataArray,
+                            borderColor: '#047857',
+                            fill: '#047857',
+                        }]
                     },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Month'
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Month'
+                                }
                             }
                         }
                     }
-                }
-            });
-        })
+                });
+            })
     </script>
 
     @*<div class="col-xl-2 col-lg7">

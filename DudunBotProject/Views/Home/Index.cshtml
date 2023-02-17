@@ -1,5 +1,10 @@
-﻿@{
+﻿@using mdlDudunBot
+
+@{
     ViewBag.Title = "Home Page";
+    var portfolio = ViewData["Portfolio"] as IEnumerable<Portfolio>;
+    var blog = ViewData["Blog"] as IEnumerable<Blog>;
+    var number = 0;
 }
 
 <!-- Portfolio Grid-->
@@ -10,19 +15,21 @@
             <h3 class="section-subheading text-muted">Project I've done in the past.</h3>
         </div>
         <div class="row">
-
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <!-- Portfolio item 1-->
-                <div class="portfolio-item">
-                        <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
-                    <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Threads</div>
-                        <div class="portfolio-caption-subheading text-muted">Illustration</div>
+            @foreach (var item in portfolio)
+            {
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <!-- Portfolio item 1-->
+                    <div class="portfolio-item">
+                        <img class="img-fluid" src="~/Assets/Upload/Portfolio/@item.Image" alt="..." />
+                        <div class="portfolio-caption">
+                            <div class="portfolio-caption-heading">@item.Title</div>
+                            <div class="portfolio-caption-subheading text-muted">@item.Client</div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
 
-        </div>
+            </div>
     </div>
 </section>
 <!-- About-->
@@ -33,47 +40,41 @@
             <h3 class="section-subheading text-muted">What's currently going in my head.</h3>
         </div>
         <ul class="timeline">
-            <li>
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/1.jpg" alt="..." /></div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <h4>2009-2011</h4>
-                        <h4 class="subheading">Our Humble Beginnings</h4>
-                    </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                </div>
-            </li>
-            <li class="timeline-inverted">
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/2.jpg" alt="..." /></div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <h4>March 2011</h4>
-                        <h4 class="subheading">An Agency is Born</h4>
-                    </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                </div>
-            </li>
-            <li>
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/3.jpg" alt="..." /></div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <h4>December 2015</h4>
-                        <h4 class="subheading">Transition to Full Service</h4>
-                    </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                </div>
-            </li>
-            <li class="timeline-inverted">
-                <div class="timeline-image"><img class="rounded-circle img-fluid" src="assets/img/about/4.jpg" alt="..." /></div>
-                <div class="timeline-panel">
-                    <div class="timeline-heading">
-                        <h4>July 2020</h4>
-                        <h4 class="subheading">Phase Two Expansion</h4>
-                    </div>
-                    <div class="timeline-body"><p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p></div>
-                </div>
-            </li>
+            @foreach (var item in blog)
+            {
+                number++;
+                if (number % 2 == 0)
+                {
+                    <li>
+                        <div class="timeline-image">
+                            <img class="rounded-circle img-fluid" src="~/Assets/Upload/Blog/@item.Image" alt="..." />
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>@item.CreatedAt.AsDateTime().ToString("MMMM") - @item.CreatedAt.AsDateTime().Year</h4>
+                                <h4 class="subheading">@item.Title</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">@Html.Raw(item.Content)</p></div>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="timeline-inverted">
+                        <div class="timeline-image">
+                            <img class="rounded-circle img-fluid" src="~/Assets/Upload/Blog/@item.Image" alt="..." />
+                        </div>
+                        <div class="timeline-panel">
+                            <div class="timeline-heading">
+                                <h4>@item.CreatedAt.AsDateTime().ToString("MMMM") - @item.CreatedAt.AsDateTime().Year</h4>
+                                <h4 class="subheading">@item.Title</h4>
+                            </div>
+                            <div class="timeline-body"><p class="text-muted">@Html.Raw(item.Content)</p></div>
+                        </div>
+                    </li>
+                }
 
+            }
         </ul>
     </div>
 </section>
